@@ -1,0 +1,22 @@
+    root = "."
+tmp_dir = "tmp"
+
+[build]
+    bin = "main"
+    cmd = "go build -o ./tmp/main ./cmd/main.go"
+    exclude_dir = ["tmp", "vendor"]
+    exclude_file = ["Dockerfile"]
+    include_dir = ["."]
+    include_file = ["*.go"]
+    main = "main.go"
+    output = "bin/{{.Dir}}_{{.OS}}_{{.Arch}}"
+    refresh_interval = 10
+    send_interrupt = true
+    stop_signal = "SIGINT"
+
+[log]
+    color = true
+    format = "$time $color($level) $prefix $message"
+    level = "debug"
+    prefix = "[air]"
+    skip_files = ["runtime/debug.go", "runtime/panic.go"]
